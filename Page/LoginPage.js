@@ -1,8 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Button} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { TextInput } from 'react-native-gesture-handler';
 
-export default function LoginPage() {
+
+
+export default function LoginPage(navigation, route) {
   console.disableYellowBox = true;
   //return 구문 밖에서는 슬래시 두개 방식으로 주석
   return (
@@ -11,8 +13,32 @@ export default function LoginPage() {
     */
     <ScrollView style={styles.container}>
         
-        <Text style={styles.loginButtonText}>로그인</Text>
         
+        <TextInput
+          style={styles.textFormTop}
+          placeholder={'아이디'}
+          onChangeText={(userId) => setUserId(userId)}
+          autoCapitalize="none"
+          returnKeyType="next"
+          onSubmitEditing={() =>
+            passwordInputRef.current && passwordInputRef.current.focus()
+          }
+          underlineColorAndroid="#f000"
+          blurOnSubmit={false}
+        />
+        <TextInput
+          style={styles.textFormTop}
+          placeholder={'비밀번호'}
+          onChangeText={(userId) => setUserId(userId)}
+          autoCapitalize="none"
+          returnKeyType="next"
+          onSubmitEditing={() =>
+            passwordInputRef.current && passwordInputRef.current.focus()
+          }
+          underlineColorAndroid="#f000"
+          blurOnSubmit={false}
+        />
+        <TouchableOpacity style={styles.loginButton} onPress={()=>{navigation.navigate('MainPage')}}><Text style={styles.loginButtonText}>로그인</Text></TouchableOpacity>
             
     </ScrollView>
   );
@@ -33,5 +59,11 @@ const styles = StyleSheet.create({
 	    //왼쪽 공간으로 부터 이격'
     textAlign: 'center',
   },
+  loginButton: {
+    width:150,
+    height:70,
+    borderWidth:3,
+    borderRadius:15,
+  }
   
 });

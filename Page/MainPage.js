@@ -1,8 +1,8 @@
 import React,{useState,useEffect} from 'react';
-import main from './assets/main.jpg';
+import main from '../assets/main.jpg';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Button} from 'react-native';
 import Loading from '../Components/LoadingPage';
-import { StatusBar } from 'expo-status-bar';
+
 
 export default function MainPage({navigation,route}) {
   console.disableYellowBox = true;
@@ -28,9 +28,7 @@ export default function MainPage({navigation,route}) {
             title:'도와줄래?'
         })
         //꿀팁 데이터로 모두 초기화 준비
-        let tip = data.tip;
-        setState(tip)
-        setCateState(tip)
+        
         setReady(false)
     },1000)
 
@@ -47,11 +45,6 @@ export default function MainPage({navigation,route}) {
             }))
         }
     }
-
-
-	let todayWeather = 10 + 17;
-    let todayCondition = "흐림"
-
 	//처음 ready 상태값은 true 이므로 ? 물음표 바로 뒤에 값이 반환(그려짐)됨
   //useEffect로 인해 데이터가 준비되고, ready 값이 변경되면 : 콜론 뒤의 값이 반환(그려짐)
   return ready ? <Loading/> :  (
@@ -61,7 +54,7 @@ export default function MainPage({navigation,route}) {
     */
     <ScrollView style={styles.container}>
       <View style={{ flexDirection:"row-reverse" }}>
-        <TouchableOpacity style={styles.loginButton}><Text style={styles.loginButtonText}>로그인</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.loginButton} onPress={()=>{navigation.navigate('LoginPage')}}><Text style={styles.loginButtonText}>로그인</Text></TouchableOpacity>
       </View>
       <Text style={styles.title}>도와줘!</Text>
       <Image style={styles.mainImage} source={main}/>
