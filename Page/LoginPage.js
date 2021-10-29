@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   container: {
     //앱의 배경 색
     backgroundColor: 'brown',
+    
   },
   loginButtonText: {
     //폰트 사이즈
@@ -64,6 +65,13 @@ const styles = StyleSheet.create({
     height:70,
     borderWidth:3,
     borderRadius:15,
+    backgroundColor:'white',
+  },
+  textFormTop: {
+    backgroundColor :'white',
+    borderWidth:1,
+    width:100,
+    height:50,
   }
   
 });
