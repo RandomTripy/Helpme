@@ -1,7 +1,10 @@
 import React,{useState,useEffect} from 'react';
 import main from '../assets/main.jpg';
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Button} from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Button, Share} from 'react-native';
 import Loading from '../Components/LoadingPage';
+import * as Sharing from 'expo-sharing';
+
+
 
 
 export default function MainPage({navigation,route}) {
@@ -45,6 +48,14 @@ export default function MainPage({navigation,route}) {
             }))
         }
     }
+
+    const share = () => {
+      Share.share({
+          message:`구글스토어 주소 적어라!`,
+      });
+  }
+    
+    
 	//처음 ready 상태값은 true 이므로 ? 물음표 바로 뒤에 값이 반환(그려짐)됨
   //useEffect로 인해 데이터가 준비되고, ready 값이 변경되면 : 콜론 뒤의 값이 반환(그려짐)
   return ready ? <Loading/> :  (
@@ -63,7 +74,7 @@ export default function MainPage({navigation,route}) {
       
       <View style={{ flexDirection:"row" }}>
         <TouchableOpacity style={styles.middleButton01}><Text style={styles.middleButtonText}>의뢰</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.middleButton02}><Text style={styles.middleButtonText}>수주</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.middleButton02} onPress={()=>{navigation.navigate('Order2')}}><Text style={styles.middleButtonText}>수주</Text></TouchableOpacity>
       </View>
       <View style={{ flexDirection:"row" }}>
         <TouchableOpacity style={styles.middleButton02}><Text style={styles.middleButtonText}>질문</Text></TouchableOpacity>
@@ -74,7 +85,7 @@ export default function MainPage({navigation,route}) {
         <TouchableOpacity style={styles.middleButton02} onPress={()=>{navigation.navigate('mypage')}}><Text style={styles.middleButtonText}>내정보</Text></TouchableOpacity>
       </View>
       <View style={{ flexDirection:"row" }}>
-        <TouchableOpacity style={styles.middleButton04}><Text style={styles.middleButtonText}>공유하기</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.middleButton04} onPress={()=>share()}><Text style={styles.middleButtonText}>공유하기</Text></TouchableOpacity>
       </View>
       
       </View>

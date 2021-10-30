@@ -8,6 +8,7 @@ import MainPage from '../Page/MainPage';
 import LoginPage from '../Page/LoginPage';
 import mypage from '../Page/mypage';
 import Installapp from '../Page/Installapp';
+import Order2 from '../Page/Order2';
 //import SignUp from '../Page/SignUp';
 
 
@@ -42,6 +43,7 @@ const StackNavigator = () =>{
             <Stack.Screen name="LoginPage" component={LoginPage}/>
             <Stack.Screen name="mypage" component={mypage}/>
             <Stack.Screen name="Installapp" component={Installapp}/>
+            <Stack.Screen name="Order2" component={Order2}/>
         </Stack.Navigator>
     )
 }
