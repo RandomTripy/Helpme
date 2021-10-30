@@ -51,7 +51,7 @@ export default function MainPage({navigation,route}) {
 
     const share = () => {
       Share.share({
-          message:`구글스토어 주소 적어라!`,
+          message:`구글스토어 주소 적어라! ex)https://play.google.com/store/apps/details?id=com.kakao.talk`,
       });
   }
     
