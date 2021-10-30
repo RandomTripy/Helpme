@@ -70,7 +70,7 @@ export default function MainPage({navigation,route}) {
         <TouchableOpacity style={styles.middleButton01}><Text style={styles.middleButtonText}>공지사항</Text></TouchableOpacity>
       </View>
       <View style={{ flexDirection:"row" }}>
-        <TouchableOpacity style={styles.middleButton01}><Text style={styles.middleButtonText}>설치어플</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.middleButton01} onPress={()=>{navigation.navigate('Installapp')}}><Text style={styles.middleButtonText}>설치어플</Text></TouchableOpacity>
         <TouchableOpacity style={styles.middleButton02} onPress={()=>{navigation.navigate('mypage')}}><Text style={styles.middleButtonText}>내정보</Text></TouchableOpacity>
       </View>
       <View style={{ flexDirection:"row" }}>

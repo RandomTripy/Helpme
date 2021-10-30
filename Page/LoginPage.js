@@ -40,8 +40,10 @@ export default function LoginPage(navigation, route) {
           underlineColorAndroid="#f000"
           blurOnSubmit={false}
         />
-        <TouchableOpacity style={styles.loginButton} onPress={()=>{navigation.navigate('MainPage')}}><Text style={styles.loginButtonText}>로그인</Text></TouchableOpacity>
-            
+        <View style={{ flexDirection:"row" }}>
+          <TouchableOpacity style={styles.loginButton1} onPress={()=>{navigation.navigate('MainPage')}}><Text style={styles.loginButtonText}>로그인</Text></TouchableOpacity>
+          <TouchableOpacity style={styles.loginButton2} onPress={()=>{navigation.navigate('SignUp')}}><Text style={styles.loginButtonText}>가입하기!</Text></TouchableOpacity>
+        </View>  
     </ScrollView>
   );
 }
@@ -50,9 +52,7 @@ const styles = StyleSheet.create({
   container: {
     //앱의 배경 색
     backgroundColor: 'white',
-    paddingTop:40,
-    paddingHorizontal:130,
-    
+    alignContent:'center',
   },
   loginButtonText: {
     //폰트 사이즈
@@ -65,8 +65,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     
   },
-  loginButton: {
+  loginButton1: {
     width:150,
+    height:70,
+    borderWidth:3,
+    borderRadius:15,
+    backgroundColor:'white',
+  },
+  loginButton2: {
+    width:180,
     height:70,
     borderWidth:3,
     borderRadius:15,

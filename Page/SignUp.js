@@ -21,6 +21,8 @@ import {
   ScrollView,
 } from 'react-native';
 
+export default function SignUp(navigation, route)
+
 const RegisterScreen = (props) => {
   const [userName, setUserName] = useState('');
   const [userId, setUserId] = useState('');

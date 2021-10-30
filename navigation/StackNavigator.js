@@ -7,7 +7,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import MainPage from '../Page/MainPage';
 import LoginPage from '../Page/LoginPage';
 import mypage from '../Page/mypage';
-//import DetailPage from './pages/DetailPage';
+import Installapp from '../Page/Installapp';
+//import SignUp from '../Page/SignUp';
+
 
 //스택 네비게이션 라이브러리가 제공해주는 여러 기능이 담겨있는 객체를 사용합니다
 //그래서 이렇게 항상 상단에 선언하고 시작하는게 규칙입니다!
@@ -39,6 +41,7 @@ const StackNavigator = () =>{
             <Stack.Screen name="MainPage" component={MainPage}/>
             <Stack.Screen name="LoginPage" component={LoginPage}/>
             <Stack.Screen name="mypage" component={mypage}/>
+            <Stack.Screen name="Installapp" component={Installapp}/>
         </Stack.Navigator>
     )
 }
