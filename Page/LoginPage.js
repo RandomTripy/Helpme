@@ -49,7 +49,7 @@ export default function LoginPage(navigation, route) {
 const styles = StyleSheet.create({
   container: {
     //앱의 배경 색
-    backgroundColor: 'brown',
+    backgroundColor: 'white',
     paddingTop:40,
     paddingHorizontal:130,
     
@@ -84,6 +84,9 @@ const styles = StyleSheet.create({
   mainImage: {
     width:150,
     height:90,
+    borderRadius:5,
+    borderColor:'black',
+    borderWidth:3,
 
   }
   

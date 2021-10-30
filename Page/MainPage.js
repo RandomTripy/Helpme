@@ -71,7 +71,7 @@ export default function MainPage({navigation,route}) {
       </View>
       <View style={{ flexDirection:"row" }}>
         <TouchableOpacity style={styles.middleButton01}><Text style={styles.middleButtonText}>설치어플</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.middleButton02}><Text style={styles.middleButtonText}>내정보</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.middleButton02} onPress={()=>{navigation.navigate('mypage')}}><Text style={styles.middleButtonText}>내정보</Text></TouchableOpacity>
       </View>
       <View style={{ flexDirection:"row" }}>
         <TouchableOpacity style={styles.middleButton04}><Text style={styles.middleButtonText}>공유하기</Text></TouchableOpacity>
@@ -87,7 +87,7 @@ export default function MainPage({navigation,route}) {
 const styles = StyleSheet.create({
   container: {
     //앱의 배경 색
-    backgroundColor: 'brown',
+    backgroundColor: 'white',
   },
   title: {
     //폰트 사이즈
@@ -110,6 +110,8 @@ const styles = StyleSheet.create({
     //컨텐츠 자체가 앱에서 어떤 곳에 위치시킬지 결정(정렬기능)
     //각 속성의 값들은 공식문서에 고대로~ 나와 있음
     alignSelf:"center",
+    borderWidth:3,
+    borderColor:'black',
   },
   Buttoncontainer:{
     alignItems:'center',

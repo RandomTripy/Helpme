@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 //import DetailPage from '../Page/DetailPage';
 import MainPage from '../Page/MainPage';
 import LoginPage from '../Page/LoginPage';
+import mypage from '../Page/mypage';
 //import DetailPage from './pages/DetailPage';
 
 //스택 네비게이션 라이브러리가 제공해주는 여러 기능이 담겨있는 객체를 사용합니다
@@ -22,13 +23,13 @@ const StackNavigator = () =>{
         <Stack.Navigator
             screenOptions={{
                 headerStyle: {
-                    backgroundColor: "black",
+                    backgroundColor: "white",
                     borderBottomColor: "black",
                     shadowColor: "black",
                     height:100
                 },
                 headerTitleAlign:'center',
-                headerTintColor: "#FFFFFF",
+                headerTintColor: "black",
                 headerBackTitleVisible: false
             }}
             
@@ -37,6 +38,7 @@ const StackNavigator = () =>{
             {/* 컴포넌트를 페이지로 만들어주는 엘리먼트에 끼워 넣습니다. 이 자체로 이제 페이지 기능을 합니다*/}
             <Stack.Screen name="MainPage" component={MainPage}/>
             <Stack.Screen name="LoginPage" component={LoginPage}/>
+            <Stack.Screen name="mypage" component={mypage}/>
         </Stack.Navigator>
     )
 }
