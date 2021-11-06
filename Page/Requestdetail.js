@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import { StyleSheet, Text, View, ScrollView} from 'react-native';
+import { TextInput } from 'react-native-gesture-handler';
 
 
 export default function Requestdetail(navigation) {
@@ -13,7 +14,7 @@ export default function Requestdetail(navigation) {
         "hour":"1시간 전"
     }
 
-    return (
+    return (<>
         <ScrollView style={styles.container}>
             <View style={styles.textContainer}>
                 <Text style={styles.title}>{list.title}</Text>
@@ -21,20 +22,45 @@ export default function Requestdetail(navigation) {
             </View>
             
         </ScrollView>
+        <TextInput
+          style={styles.comment}
+          placeholder={'댓글을 입력해주세요.'}
+          autoCapitalize="none"
+          returnKeyType="next"
+          onSubmitEditing={() =>
+            passwordInputRef.current && passwordInputRef.current.focus()
+          }
+          underlineColorAndroid="#f000"
+          blurOnSubmit={false}
+        />
+        </>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-
+        alignSelf:'center',
+        marginTop:20,
     },
     title: {
-        fontSize:20,
+        fontSize:30,
         fontWeight:"bold",
         paddingLeft:20,
+        backgroundColor:"paleturquoise",
       },
       desc: {
         fontSize:16,
         padding:20,
+        backgroundColor:"aqua",
       },
+    textContainer:{
+        marginBottom:15,
+        borderRadius:19,
+        borderWidth:5,
+        borderColor:"red"
+    },
+    comment: {
+        marginBottom:5,
+
+    }
 })
