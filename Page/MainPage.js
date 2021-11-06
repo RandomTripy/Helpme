@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import main from '../assets/main.jpg';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Button, Share} from 'react-native';
-import Loading from '../Components/LoadingPage';
+import Loading from '../Components/Loading';
 import * as Sharing from 'expo-sharing';
 
 
@@ -28,7 +28,7 @@ export default function MainPage({navigation,route}) {
     setTimeout(()=>{
         //헤더의 타이틀 변경
         navigation.setOptions({
-            title:'도와줄래?'
+            title:'도와줘!'
         })
         //꿀팁 데이터로 모두 초기화 준비
         
@@ -64,28 +64,16 @@ export default function MainPage({navigation,route}) {
       return 구문 안에서는 {슬래시 + * 방식으로 주석
     */
     <ScrollView style={styles.container}>
-      <View style={{ flexDirection:"row-reverse" }}>
-        <TouchableOpacity style={styles.loginButton} onPress={()=>{navigation.navigate('LoginPage')}}><Text style={styles.loginButtonText}>로그인</Text></TouchableOpacity>
-      </View>
-      <Text style={styles.title}>도와줘!</Text>
       <Image style={styles.mainImage} source={main}/>
       
       <View style={styles.Buttoncontainer}>
       
       <View style={{ flexDirection:"row" }}>
-        <TouchableOpacity style={styles.middleButton01}><Text style={styles.middleButtonText}>의뢰</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.middleButton02} onPress={()=>{navigation.navigate('Order2')}}><Text style={styles.middleButtonText}>수주</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.middleButton01} onPress={()=>{navigation.navigate('Requestlist')}}><Text style={styles.middleButtonText1}>도움요청</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.middleButton02} onPress={()=>{navigation.navigate('Installapp')}}><Text style={styles.middleButtonText2}>설치어플</Text></TouchableOpacity>
       </View>
       <View style={{ flexDirection:"row" }}>
-        <TouchableOpacity style={styles.middleButton02}><Text style={styles.middleButtonText}>질문</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.middleButton01}><Text style={styles.middleButtonText}>공지사항</Text></TouchableOpacity>
-      </View>
-      <View style={{ flexDirection:"row" }}>
-        <TouchableOpacity style={styles.middleButton01} onPress={()=>{navigation.navigate('Installapp')}}><Text style={styles.middleButtonText}>설치어플</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.middleButton02} onPress={()=>{navigation.navigate('mypage')}}><Text style={styles.middleButtonText}>내정보</Text></TouchableOpacity>
-      </View>
-      <View style={{ flexDirection:"row" }}>
-        <TouchableOpacity style={styles.middleButton04} onPress={()=>share()}><Text style={styles.middleButtonText}>공유하기</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.middleButton03} onPress={()=>share()}><Text style={styles.middleButtonText3}>공유하기</Text></TouchableOpacity>
       </View>
       
       </View>
@@ -100,24 +88,15 @@ const styles = StyleSheet.create({
     //앱의 배경 색
     backgroundColor: 'white',
   },
-  title: {
-    //폰트 사이즈
-    fontSize: 40,
-    //폰트 두께
-    fontWeight: '700',
-    //위 공간으로 부터 이격
-    marginTop:1,
-	    //왼쪽 공간으로 부터 이격'
-    textAlign: 'center',
-  },
   mainImage: {
     //컨텐츠의 넓이 값
-    width:'90%',
+    width:380,
     //컨텐츠의 높이 값
-    height:200,
+    height:250,
     //컨텐츠의 모서리 구부리기
     borderRadius:10,
-    marginTop:20,
+    marginTop:50,
+    marginBottom:30,
     //컨텐츠 자체가 앱에서 어떤 곳에 위치시킬지 결정(정렬기능)
     //각 속성의 값들은 공식문서에 고대로~ 나와 있음
     alignSelf:"center",
@@ -128,64 +107,61 @@ const styles = StyleSheet.create({
     alignItems:'center',
     marginTop:20,
   },
-  middleContainer:{
-    marginTop:20,
-    marginLeft:10,
-    height:60
-  },
-  loginButton:{
-    width:100,
-    height:50,
-    padding:15,
-    backgroundColor:"green",
-    borderRadius:8,
-    margin:7,
-    alignItems:'center',
-    marginTop:28,
-  },
   middleButton01: {
-    width:150,
+    width:160,
     height:100,
-    padding:15,
-    backgroundColor:"#fdc453",
-    borderColor:"deeppink",
+    padding:13,
+    backgroundColor:"white",
+    borderWidth:3,
+    borderColor:'black',
     borderRadius:15,
-    margin:7
+    margin:7,
   },
   middleButton02: {
-    width:150,
+    width:160,
     height:100,
-    padding:15,
-    backgroundColor:"#fe8d6f",
+    padding:13,
+    backgroundColor:"white",
+    borderColor:'black',
+    borderWidth:3,
     borderRadius:15,
-    margin:7
+    margin:7,
+    marginLeft:20,
   },
   middleButton03: {
-    width:100,
-    height:50,
-    padding:15,
-    backgroundColor:"green",
-    borderRadius:15,
-    margin:7
-  },
-  middleButton04: {
-    width:110,
-    height:70,
+    width:160,
+    height:75,
     padding:15,
     backgroundColor:"red",
+    backgroundColor:"white",
+    borderColor:'blue',
+    borderWidth:3,
     borderRadius:15,
-    margin:7
+    margin:15,
+    paddingTop:1,
   },
-  middleButtonText: {
-    color:"#fff",
+  middleButtonText1: {
+    color:"red",
     fontWeight:"700",
     //텍스트의 현재 위치에서의 정렬 
     textAlign:"center",
     fontSize:30,
     paddingTop:12,
   },
-  cardContainer: {
-    marginTop:10,
-    marginLeft:10
+  middleButtonText2: {
+    color:"blue",
+    fontWeight:"700",
+    //텍스트의 현재 위치에서의 정렬 
+    textAlign:"center",
+    fontSize:30,
+    paddingTop:12,
+  },
+  middleButtonText3: {
+    color:"black",
+    fontWeight:"700",
+    //텍스트의 현재 위치에서의 정렬 
+    textAlign:"center",
+    fontSize:30,
+    paddingTop:12,
   },
 });

@@ -5,10 +5,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 //페이지로 만든 컴포넌트들을 불러옵니다
 //import DetailPage from '../Page/DetailPage';
 import MainPage from '../Page/MainPage';
-import LoginPage from '../Page/LoginPage';
-import mypage from '../Page/mypage';
+//import LoginPage from '../Page/LoginPage';
+//import mypage from '../Page/mypage';
 import Installapp from '../Page/Installapp';
-import Order2 from '../Page/Order2';
+import Requestlist from '../Page/Requestlist';
+import Requestdetail from '../Page/Requestdetail';
 //import SignUp from '../Page/SignUp';
 
 
@@ -27,7 +28,7 @@ const StackNavigator = () =>{
             screenOptions={{
                 headerStyle: {
                     backgroundColor: "white",
-                    borderBottomColor: "black",
+                    borderBottomColor: "blue",
                     shadowColor: "black",
                     height:100
                 },
@@ -40,10 +41,9 @@ const StackNavigator = () =>{
 
             {/* 컴포넌트를 페이지로 만들어주는 엘리먼트에 끼워 넣습니다. 이 자체로 이제 페이지 기능을 합니다*/}
             <Stack.Screen name="MainPage" component={MainPage}/>
-            <Stack.Screen name="LoginPage" component={LoginPage}/>
-            <Stack.Screen name="mypage" component={mypage}/>
             <Stack.Screen name="Installapp" component={Installapp}/>
-            <Stack.Screen name="Order2" component={Order2}/>
+            <Stack.Screen name="Requestlist" component={Requestlist}/>
+            <Stack.Screen name="Requestdetail" component={Requestdetail}/>
         </Stack.Navigator>
     )
 }
