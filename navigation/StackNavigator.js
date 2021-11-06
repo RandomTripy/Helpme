@@ -27,7 +27,7 @@ const StackNavigator = () =>{
         <Stack.Navigator
             screenOptions={{
                 headerStyle: {
-                    backgroundColor: "white",
+                    backgroundColor: "royalblue",
                     borderBottomColor: "blue",
                     shadowColor: "black",
                     height:100

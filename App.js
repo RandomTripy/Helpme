@@ -15,7 +15,7 @@ export default function App() {
 
   return ( 
   <NavigationContainer>
-    <StatusBar style="blue" />
+    <StatusBar style="aqua" />
     <StackNavigator/>
  </NavigationContainer>);
 }

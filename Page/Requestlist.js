@@ -2,7 +2,6 @@ import React,{useState,useEffect} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image} from 'react-native';
 import data from '../data.json'
 import List from '../Components/List'
-import Loading from '../Components/Loading';
 import addbutton from '../assets/addbutton.png';
 import { FloatingAction } from "react-native-floating-action";
 
@@ -25,7 +24,7 @@ export default function Requestlist({navigation,route}) {
 
   const [cateState,setCateState] = useState([])
 
-  const [ready,setReady] = useState(true)
+  
 
   
 
@@ -38,7 +37,7 @@ export default function Requestlist({navigation,route}) {
           let list = data.list;
           setState(list)
           setCateState(list)
-          setReady(false)
+          
        },1000)
 //      firebase_db.ref('/helpList').once('value').then((snapshot) => {
 //          console.log("파이어베이스에서 데이터 가져왔습니다!!")
@@ -64,12 +63,12 @@ export default function Requestlist({navigation,route}) {
 
    
 
-    return ready ? <Loading/> : (
+    return (
     
     /*
       return 구문 안에서는 {슬래시 + * 방식으로 주석
     */
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
           <ScrollView style={styles.topContainer} horizontal indicatorStyle={"white"}>
             <TouchableOpacity style={styles.topButton01}><Text style={styles.topButtonText}>전체보기</Text></TouchableOpacity>
             <TouchableOpacity style={styles.topButton01}><Text style={styles.topButtonText}>문서 작성</Text></TouchableOpacity>
@@ -78,10 +77,10 @@ export default function Requestlist({navigation,route}) {
             <TouchableOpacity style={styles.topButton01}><Text style={styles.topButtonText}>문서 작성</Text></TouchableOpacity>
             <TouchableOpacity style={styles.topButton01}><Text style={styles.topButtonText}>물건 구매</Text></TouchableOpacity>
           </ScrollView>
-          <View style={styles.listContainer}>
+          <ScrollView style={styles.listContainer}>
               {
                 <>
-                <TouchableOpacity style={styles.listbutton01}>
+                <TouchableOpacity style={styles.listbutton01}onPress={()=>{navigation.navigate('Requestdetail')}}>
                 <View style={{flexDirection: 'row'}}>
                  <Text style={styles.categoryText}>문서작업</Text>
                  <Text style={styles.timeText}>1h ago</Text>
@@ -99,13 +98,13 @@ export default function Requestlist({navigation,route}) {
                 </TouchableOpacity>
                 </>
               }
-          </View>
+          </ScrollView>
       
       
-          <View style={styles.addbutton}>
-            <FloatingAction actions={actions}onPress={()=>{navigation.navigate('Requestdetail')}}/>
-          </View>
-      </ScrollView>
+          <TouchableOpacity style={styles.addbutton}onPress={()=>{navigation.navigate('Requestdetail')}}>
+            <FloatingAction actions={actions}/>
+          </TouchableOpacity>
+      </View>
     );
 }
 
@@ -140,7 +139,7 @@ const styles = StyleSheet.create({
   topContainer:{
     marginTop:4,
     marginLeft:5,
-    height:75
+    height:80
   },
   listContainer:{
     padding:15,
@@ -198,7 +197,7 @@ const styles = StyleSheet.create({
     width:100,
     height:10,
     position:'absolute',
-    bottom:10,
+    bottom:7,
     right:10,
   },
 })

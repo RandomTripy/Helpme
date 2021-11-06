@@ -1,8 +1,8 @@
 import React from "react"
-import {View,Text,Image,StyleSheet} from "react-native";
+import {View,Text,StyleSheet} from "react-native";
 
 //비구조 할당 방식으로 넘긴 속성 데이터를 꺼내 사용함
-export default function List({content, navigation}) {
+export default function List({content}) {
     return (<View style={styles.list}>
         <View style={styles.listText}>
           <Text style={styles.listTitle} numberOfLines={1}>{content.title}</Text>
@@ -15,30 +15,29 @@ export default function List({content, navigation}) {
 const styles = StyleSheet.create({
 
   list:{
-    flex:1,
+    
     //컨텐츠들을 가로로 나열
     //세로로 나열은 column <- 디폴트 값임 
-    
+    flexDirection:"column",
     margin:10,
     borderBottomWidth:0.5,
     borderBottomColor:"#eee",
     paddingBottom:10
 
   },
-  listText: {
-    flex:2,
-    flexDirection:"column",
-    marginLeft:10,
-  },
   listTitle: {
     fontSize:20,
-    fontWeight:"700"
+    fontWeight:"bold",
+    paddingLeft:20,
   },
   listDesc: {
-    fontSize:15
+    fontSize:16,
+    padding:20,
   },
   listHour: {
-    fontSize:10,
-    color:"#A6A6A6",
+    fontSize:16,
+    fontWeight:"normal",
+    textAlign:"right",
+    padding:20,
   }
 })
