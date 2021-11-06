@@ -60,7 +60,14 @@ const styles = StyleSheet.create({
         borderColor:"red"
     },
     comment: {
-        marginBottom:5,
+        marginBottom:15,
+        width:300,
+        height:55,
+        borderWidth:2,
+        borderColor:'black',
+        borderRadius:30,
+        marginLeft:15,
+        paddingLeft:20,
 
     }
 })
