@@ -1,10 +1,21 @@
 import React,{useState,useEffect} from 'react';
-import { StyleSheet, Text, View, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import { FloatingAction } from "react-native-floating-action";
 
 
 export default function Requestdetail(navigation) {
     console.disableYellowBox = true;
+
+    
+
+    const actions = [
+        {
+          icon: require("../assets/addbutton.png"),
+          name: "enter",
+          position: 1
+        }
+      ];
 
     const list = {
         "idx":0,
@@ -22,6 +33,7 @@ export default function Requestdetail(navigation) {
             </View>
             
         </ScrollView>
+        <View style={{ flexDirection:"row" }}>
         <TextInput
           style={styles.comment}
           placeholder={'댓글을 입력해주세요.'}
@@ -33,6 +45,11 @@ export default function Requestdetail(navigation) {
           underlineColorAndroid="#f000"
           blurOnSubmit={false}
         />
+        <TouchableOpacity style={styles.enterbutton}onPress={()=>{navigation.navigate('Requestadd')}}>
+            <FloatingAction actions={actions}/>
+          </TouchableOpacity>
+          </View>
+        
         </>
     )
 }
@@ -64,10 +81,13 @@ const styles = StyleSheet.create({
         width:300,
         height:55,
         borderWidth:2,
-        borderColor:'black',
+        borderColor:'darkblue',
         borderRadius:30,
         marginLeft:15,
         paddingLeft:20,
-
+    },
+    enterbutton:{
+        right:0,
+    
     }
 })

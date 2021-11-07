@@ -4,6 +4,7 @@ import data from '../data.json'
 import List from '../Components/List'
 import addbutton from '../assets/addbutton.png';
 import { FloatingAction } from "react-native-floating-action";
+import Loading from '../Components/Loading';
 
 //import {firebase_db} from "../firebaseConfig"
 
@@ -24,21 +25,18 @@ export default function Requestlist({navigation,route}) {
 
   const [cateState,setCateState] = useState([])
 
-  
-
-  
+  const [ready, setReady] = useState(true)
 
   useEffect(()=>{
     setTimeout(()=>{
-      //헤더의 타이틀 변경
-      navigation.setOptions({
-          title:'도움요청'
+      let list = state.list
+      setState(list)
+      setCateState(list)
+      setReady(false)
       })
-          let list = data.list;
-          setState(list)
-          setCateState(list)
           
-       },1000)
+          
+      },1000)
 //      firebase_db.ref('/helpList').once('value').then((snapshot) => {
 //          console.log("파이어베이스에서 데이터 가져왔습니다!!")
 //          let list = snapshot.val();
@@ -47,7 +45,8 @@ export default function Requestlist({navigation,route}) {
 //          setReady(false)
 //    },1500)
     
-  },[])
+  
+
 
   const category = (cate) => {
     if(cate == "전체보기"){
@@ -63,7 +62,7 @@ export default function Requestlist({navigation,route}) {
 
    
 
-    return (
+    return ready ? <Loading/> : (
     
     /*
       return 구문 안에서는 {슬래시 + * 방식으로 주석
@@ -95,6 +94,13 @@ export default function Requestlist({navigation,route}) {
                  </View>
                  <Text style={styles.titleText}>토마토 주스 구매하는데 잘 안됩니다 ㅠ</Text>
                  <Text style={styles.mainText}>결제할때마다 막힙니다. ㅜㅜ</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.listbutton02}>
+                  {
+                  cateState.map((content,i)=>{
+                    return (<List content={content} key={i}/>)
+                  })
+                  }
                 </TouchableOpacity>
                 </>
               }

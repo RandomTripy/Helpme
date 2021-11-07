@@ -10,6 +10,7 @@ import MainPage from '../Page/MainPage';
 import Installapp from '../Page/Installapp';
 import Requestlist from '../Page/Requestlist';
 import Requestdetail from '../Page/Requestdetail';
+import List from '../Components/List';
 //import SignUp from '../Page/SignUp';
 
 
@@ -44,6 +45,7 @@ const StackNavigator = () =>{
             <Stack.Screen name="Installapp" component={Installapp}/>
             <Stack.Screen name="Requestlist" component={Requestlist}/>
             <Stack.Screen name="Requestdetail" component={Requestdetail}/>
+            <Stack.Screen name="List" component={List}/>
         </Stack.Navigator>
     )
 }
