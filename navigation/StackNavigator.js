@@ -11,6 +11,7 @@ import Installapp from '../Page/Installapp';
 import Requestlist from '../Page/Requestlist';
 import Requestdetail from '../Page/Requestdetail';
 import List from '../Components/List';
+import Requestadd from '../Page/Requestadd';
 //import SignUp from '../Page/SignUp';
 
 
@@ -46,6 +47,7 @@ const StackNavigator = () =>{
             <Stack.Screen name="Requestlist" component={Requestlist}/>
             <Stack.Screen name="Requestdetail" component={Requestdetail}/>
             <Stack.Screen name="List" component={List}/>
+            <Stack.Screen name="Requestadd" component={Requestadd}/>
         </Stack.Navigator>
     )
 }

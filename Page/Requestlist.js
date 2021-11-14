@@ -1,49 +1,60 @@
 import React,{useState,useEffect} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image} from 'react-native';
-import data from '../data.json'
-import List from '../Components/List'
+import data from '../data.json';
+import List from '../Components/List';
 import addbutton from '../assets/addbutton.png';
 import { FloatingAction } from "react-native-floating-action";
 import Loading from '../Components/Loading';
+import { StatusBar } from 'expo-status-bar';
+import {firebase_db} from "../firebaseConfig"
 
-//import {firebase_db} from "../firebaseConfig"
 
-
-export default function Requestlist({navigation,route}) {
+export default function Requestlist({navigation,content}) {
   console.disableYellowBox = true;
   //return 구문 밖에서는 슬래시 두개 방식으로 주석
 
   const actions = [
     {
-      icon: require("../assets/addbutton.png"),
-      name: "navigation",
-      position: 1
+      icon: addbutton,
+      name: "add",
+      position: 2,
     }
   ];
 
+  
+
   const [state,setState] = useState([])
 
-  const [cateState,setCateState] = useState([])
+  const [cateState,setCateState] = useState([
+    { 
+    "idx":0,
+    "category":"문서작성",
+    "title":"토마토 주스 구매하는데 어렵네요..",
+    "desc":"몇번을 시도해도 결제에서 막히네요ㅠ 도와주세요!",
+    "hour":"1시간 전"
+  } 
+  ]);
 
   const [ready, setReady] = useState(true)
 
   useEffect(()=>{
+    
     setTimeout(()=>{
-      let list = state.list
+      let list = data.list;
       setState(list)
       setCateState(list)
       setReady(false)
-      })
+    })
           
           
-      },1000)
-//      firebase_db.ref('/helpList').once('value').then((snapshot) => {
-//          console.log("파이어베이스에서 데이터 가져왔습니다!!")
-//          let list = snapshot.val();
-//          setState(list)
-//          setCateState(list)
-//          setReady(false)
-//    },1500)
+  },1000)
+      firebase_db.ref('/helpme').once('value').then((snapshot) => {
+          console.log("파이어베이스에서 데이터 가져왔습니다!!")
+          let list = snapshot.val();
+          setState(list)
+          setCateState(list)
+          setReady(false)
+    },1500)
     
   
 
@@ -62,52 +73,38 @@ export default function Requestlist({navigation,route}) {
 
    
 
-    return ready ? <Loading/> : (
+    return(
     
     /*
       return 구문 안에서는 {슬래시 + * 방식으로 주석
     */
       <View style={styles.container}>
+        <StatusBar style="aqua" />
           <ScrollView style={styles.topContainer} horizontal indicatorStyle={"white"}>
-            <TouchableOpacity style={styles.topButton01}><Text style={styles.topButtonText}>전체보기</Text></TouchableOpacity>
-            <TouchableOpacity style={styles.topButton01}><Text style={styles.topButtonText}>문서 작성</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.topButton01} onPress={()=>{category('전체보기')}}><Text style={styles.topButtonText}>전체보기</Text></TouchableOpacity>
+            <TouchableOpacity style={styles.topButton01} onPress={()=>{category('문서작성')}}><Text style={styles.topButtonText}>문서 작성</Text></TouchableOpacity>
             <TouchableOpacity style={styles.topButton01}><Text style={styles.topButtonText}>물건 구매</Text></TouchableOpacity>
             <TouchableOpacity style={styles.topButton01}><Text style={styles.topButtonText}>전체보기</Text></TouchableOpacity>
             <TouchableOpacity style={styles.topButton01}><Text style={styles.topButtonText}>문서 작성</Text></TouchableOpacity>
             <TouchableOpacity style={styles.topButton01}><Text style={styles.topButtonText}>물건 구매</Text></TouchableOpacity>
           </ScrollView>
           <ScrollView style={styles.listContainer}>
-              {
-                <>
-                <TouchableOpacity style={styles.listbutton01}onPress={()=>{navigation.navigate('Requestdetail')}}>
-                <View style={{flexDirection: 'row'}}>
-                 <Text style={styles.categoryText}>문서작업</Text>
-                 <Text style={styles.timeText}>1h ago</Text>
-                 </View>
-                 <Text style={styles.titleText}>공문을 보내려고 합니다! 아래에 첨부사진 파일 올렸습니다! 부탁드립니다!</Text>
-                 <Text style={styles.mainText}>첨부된 사진대로 부탁드립니다.</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.listbutton02}>
-                <View style={{flexDirection: 'row'}}>
-                 <Text style={styles.categoryText}>물건구매</Text>
-                 <Text style={styles.timeText}>3h ago</Text>
-                 </View>
-                 <Text style={styles.titleText}>토마토 주스 구매하는데 잘 안됩니다 ㅠ</Text>
-                 <Text style={styles.mainText}>결제할때마다 막힙니다. ㅜㅜ</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.listbutton02}>
+              
+                
                   {
                   cateState.map((content,i)=>{
-                    return (<List content={content} key={i}/>)
+                    return (
+                      <List content={content} key={i} navigation={navigation}/>
+                    )
                   })
                   }
-                </TouchableOpacity>
-                </>
-              }
+                     
+                
+              
           </ScrollView>
       
       
-          <TouchableOpacity style={styles.addbutton}onPress={()=>{navigation.navigate('Requestdetail')}}>
+          <TouchableOpacity style={styles.addbutton}onPress={()=>{navigation.navigate('Requestadd')}}>
             <FloatingAction actions={actions}/>
           </TouchableOpacity>
       </View>
